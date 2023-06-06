@@ -7,6 +7,7 @@ export function ApiStack({ stack, app }) {
   // Luodaan API ja määritellään sen reitit
   const api = new Api(stack, 'Api', {
     defaults: {
+      authorizer: 'iam',
       function: {
         bind: [table],
       },
