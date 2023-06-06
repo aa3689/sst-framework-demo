@@ -36,6 +36,7 @@ export default function Home() {
   }
 
   function renderCoursesList(courses) {
+    //console.log(courses);
     return (
       <>
         <LinkContainer to="/courses/new">
@@ -48,6 +49,10 @@ export default function Home() {
           <LinkContainer key={courseName} to={`/courses/${courseName}`}>
             <ListGroup.Item action className="text-nowrap text-truncate">
               <span className="fw-bold">{courseName}</span>
+              <br />
+              <span>Laajuus: {courseScope}</span>
+              <br />
+              <span>Arvosana: {courseGrade}</span>
             </ListGroup.Item>
           </LinkContainer>
         ))}
@@ -58,8 +63,8 @@ export default function Home() {
   function renderLander() {
     return (
       <div className="lander">
-        <h1>Scratch</h1>
-        <p className="text-muted">HTK20S1</p>
+        <h1>Suoritetut kurssit</h1>
+        <p className="text-muted">Kirjaudu sisään lisätäksesi kursseja</p>
       </div>
     );
   }

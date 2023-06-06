@@ -1,0 +1,119 @@
+import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { API } from 'aws-amplify';
+import { onError } from '../lib/errorLib';
+import Form from 'react-bootstrap/Form';
+import LoaderButton from '../components/LoaderButton';
+import './Course.css';
+
+export default function Course() {
+  const { courseName } = useParams();
+  const nav = useNavigate();
+  const [course, setCourse] = useState(null);
+  const [courseScope, setCourseScope] = useState('');
+  const [courseGrade, setCourseGrade] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    function loadCourse() {
+      return API.get('courses', `/courses/${courseName}`);
+    }
+
+    async function onLoad() {
+      try {
+        const course = await loadCourse();
+        const { courseScope, courseGrade } = course;
+
+        setCourseScope(courseScope);
+        setCourseGrade(courseGrade);
+        setCourse(course);
+      } catch (e) {
+        onError(e);
+      }
+    }
+
+    onLoad();
+  }, [courseName]);
+
+  function validateForm() {
+    return courseName.length > 0;
+  }
+
+  function saveCourse(course) {
+    console.log('course', course);
+    return API.put('courses', `/courses/${courseName}`, {
+      body: course,
+    });
+  }
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+
+    setIsLoading(true);
+
+    try {
+      await saveCourse({
+        courseScope,
+        courseGrade,
+      });
+      nav('/');
+    } catch (e) {
+      onError(e);
+      setIsLoading(false);
+    }
+  }
+
+  async function handleDelete(event) {
+    event.preventDefault();
+
+    setIsDeleting(true);
+  }
+
+  return (
+    <div className="Course">
+      {course && (
+        <Form onSubmit={handleSubmit}>
+          <Form.Group controlId="courseName">
+            Kurssin nimi
+            <Form.Control value={courseName} input type="input" disabled />
+          </Form.Group>
+          <Form.Group controlId="courseScope">
+            Kurssin laajuus
+            <Form.Control
+              value={courseScope}
+              as="input"
+              onChange={(e) => setCourseScope(e.target.value)}
+            />
+          </Form.Group>
+          <Form.Group controlId="courseGrade">
+            Kurssin arvosana
+            <Form.Control
+              value={courseGrade}
+              as="input"
+              onChange={(e) => setCourseGrade(e.target.value)}
+            />
+          </Form.Group>
+          <LoaderButton
+            block="true"
+            size="lg"
+            type="submit"
+            isLoading={isLoading}
+            disabled={!validateForm()}
+          >
+            Save
+          </LoaderButton>
+          <LoaderButton
+            block="true"
+            size="lg"
+            variant="danger"
+            onClick={handleDelete}
+            isLoading={isDeleting}
+          >
+            Delete
+          </LoaderButton>
+        </Form>
+      )}
+    </div>
+  );
+}

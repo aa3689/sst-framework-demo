@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import { useNavigate } from 'react-router-dom';
 import LoaderButton from '../components/LoaderButton';
@@ -6,7 +6,7 @@ import { onError } from '../lib/errorLib';
 import { API } from 'aws-amplify';
 import './NewCourse.css';
 
-export default function NewNote() {
+export default function NewCourse() {
   const nav = useNavigate();
   const [courseName, setcourseName] = useState('');
   const [courseScope, setcourseScope] = useState('');
@@ -23,7 +23,7 @@ export default function NewNote() {
     setIsLoading(true);
 
     try {
-      await createCourse({ courseName });
+      await createCourse({ courseName, courseScope, courseGrade });
       nav('/');
     } catch (e) {
       onError(e);
@@ -32,6 +32,7 @@ export default function NewNote() {
   }
 
   function createCourse(course) {
+    console.log('course', course);
     return API.post('courses', '/courses', {
       body: course,
     });
@@ -41,6 +42,7 @@ export default function NewNote() {
     <div className="NewCourse">
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="courseName">
+          Kurssin nimi
           <Form.Control
             value={courseName}
             as="input"
@@ -48,6 +50,7 @@ export default function NewNote() {
           />
         </Form.Group>
         <Form.Group controlId="courseScope">
+          Kurssin laajuus
           <Form.Control
             value={courseScope}
             as="input"
@@ -55,6 +58,7 @@ export default function NewNote() {
           />
         </Form.Group>
         <Form.Group controlId="courseGrade">
+          Kurssin arvosana
           <Form.Control
             value={courseGrade}
             as="input"
