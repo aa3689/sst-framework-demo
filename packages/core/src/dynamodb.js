@@ -1,3 +1,5 @@
+// dynamodb.js-tiedosto on "aputiedosto", jota käytetään lambda-funktioissa (functions -> src).
+
 import AWS from 'aws-sdk';
 
 const client = new AWS.DynamoDB.DocumentClient();

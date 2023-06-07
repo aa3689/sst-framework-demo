@@ -1,9 +1,12 @@
+// handler.js-tiedosto on "wrapperi" lambda-funktioille.
+// Se mahdollistaa yhtenäisen virheiden käsittelyn ja vastausten muotoilun yhdestä tiedostosta,
+// jolloin itse lambda-funktioiden koodi pysyy siistimpänä.
+
 export default function handler(lambda) {
   return async function (event, context) {
     let body, statusCode;
 
     try {
-      // Run the Lambda
       body = await lambda(event, context);
       statusCode = 200;
     } catch (e) {
@@ -12,7 +15,6 @@ export default function handler(lambda) {
       statusCode = 500;
     }
 
-    // Return HTTP response
     return {
       statusCode,
       body: JSON.stringify(body),
