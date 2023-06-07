@@ -4,7 +4,7 @@ Serverless Stack (SST) on framework full-stack-serverless-sovellusten rakentamis
 
 ### Projekti
 
-Projekti toimi Backend 2 -kurssin lopputyönä. Työssä oli tarkoituksena tutustua SST-frameworkiin vastapainona kurssilla käytettyyn serverless-frameworkiin. Projekti toteutettiin SST:n oman tutoriaalin pohjalta: https://sst.dev/guide.html#table-of-contents
+Projekti toimi Backend 2 -kurssin lopputyönä. Työssä oli tarkoituksena tutustua SST-frameworkiin vastapainona kurssilla käytettyyn serverless-frameworkiin. Projekti toteutettiin SST:n oman tutoriaalin pohjalta: https://sst.dev/guide.html
 
 Sovelluksen päärakenne on seuraava:
 
@@ -16,3 +16,4 @@ Sovelluksen päärakenne on seuraava:
 	- functions -> lambda-funktiot
 - stacks-kansio sisältää infran pystyttämiseen käytetyt tiedostot, joista ns. tulee CloudFormation-stackeja
 - sst.config.ts-tiedosto hallinnoi koko sovellusta
+

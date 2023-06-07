@@ -5,6 +5,7 @@ import { onError } from '../lib/errorLib';
 import { API } from 'aws-amplify';
 import { BsPencilSquare } from 'react-icons/bs';
 import { LinkContainer } from 'react-router-bootstrap';
+import { Spinner } from 'react-bootstrap';
 import './Home.css';
 
 export default function Home() {
@@ -73,8 +74,18 @@ export default function Home() {
     return (
       <div className="courses">
         <h2 className="pb-3 mt-4 mb-3 border-bottom">Suoritetut kurssit</h2>
-        <ListGroup>{!isLoading && renderCoursesList(courses)}</ListGroup>
-        <span className="text-muted">Valitse kurssi muokatakseksi sitä</span>
+        {isLoading ? (
+          <Spinner animation="border" role="status">
+            <span className="visually-hidden">Ladataan...</span>
+          </Spinner>
+        ) : (
+          <>
+            <ListGroup>{renderCoursesList(courses)}</ListGroup>
+            <span className="text-muted">
+              Valitse kurssi muokatakseksi sitä
+            </span>
+          </>
+        )}
       </div>
     );
   }
