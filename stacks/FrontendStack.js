@@ -11,12 +11,11 @@ export function FrontendStack({ stack, app }) {
   const { api } = use(ApiStack);
   const { auth } = use(AuthStack);
 
-  // Luodaan
+  // Luodaan React-sivusto ja asetetaan ympäristömuuttujat
   const site = new StaticSite(stack, 'ReactSite', {
     path: 'frontend',
     buildOutput: 'build',
     buildCommand: 'npm run build',
-    // Pass in our environment variables
     environment: {
       REACT_APP_API_URL: api.customDomainUrl || api.url,
       REACT_APP_REGION: app.region,
@@ -26,7 +25,7 @@ export function FrontendStack({ stack, app }) {
     },
   });
 
-  // Show the url in the output
+  // Tulostetaan CloudFront-osoite jos olemassa, muutoin localhost:3000
   stack.addOutputs({
     SiteUrl: site.url || 'http://localhost:3000',
   });
