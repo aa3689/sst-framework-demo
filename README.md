@@ -32,7 +32,7 @@ Projektin rakenne on seuraava:
 ├── **sst.config.ts**
 └── ...
 
-[projektin rakenne](./tree.png)
+<img src="./tree.png">
 
 - frontend-kansio sisältää React-sovelluksen
 - packages-kansio sisältää kaksi kansiota:
