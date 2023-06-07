@@ -69,12 +69,12 @@ export default function NewCourse() {
         <LoaderButton
           block
           type="submit"
-          size="lg"
+          size="sm"
           variant="primary"
           isLoading={isLoading}
           disabled={!validateForm()}
         >
-          Create
+          Lisää
         </LoaderButton>
       </Form>
     </div>

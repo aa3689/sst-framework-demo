@@ -66,24 +66,24 @@ export default function Signup() {
     return (
       <Form onSubmit={handleConfirmationSubmit}>
         <Form.Group controlId="confirmationCode" size="lg">
-          <Form.Label>Confirmation Code</Form.Label>
+          <Form.Label>Vahvistuskoodi</Form.Label>
           <Form.Control
             autoFocus
             type="tel"
             onChange={handleFieldChange}
             value={fields.confirmationCode}
           />
-          <Form.Text muted>Please check your email for the code.</Form.Text>
+          <Form.Text muted>Vahvistuskoodi on lähetetty sähköpostiisi</Form.Text>
         </Form.Group>
         <LoaderButton
           block="true"
-          size="lg"
+          size="sm"
           type="submit"
           variant="success"
           isLoading={isLoading}
           disabled={!validateConfirmationForm()}
         >
-          Verify
+          Vahvista
         </LoaderButton>
       </Form>
     );
@@ -93,7 +93,7 @@ export default function Signup() {
     return (
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="email" size="lg">
-          <Form.Label>Email</Form.Label>
+          <Form.Label>Sähköposti</Form.Label>
           <Form.Control
             autoFocus
             type="email"
@@ -102,7 +102,7 @@ export default function Signup() {
           />
         </Form.Group>
         <Form.Group controlId="password" size="lg">
-          <Form.Label>Password</Form.Label>
+          <Form.Label>Salasana</Form.Label>
           <Form.Control
             type="password"
             value={fields.password}
@@ -110,7 +110,7 @@ export default function Signup() {
           />
         </Form.Group>
         <Form.Group controlId="confirmPassword" size="lg">
-          <Form.Label>Confirm Password</Form.Label>
+          <Form.Label>Vahvista salasana</Form.Label>
           <Form.Control
             type="password"
             onChange={handleFieldChange}
@@ -119,13 +119,13 @@ export default function Signup() {
         </Form.Group>
         <LoaderButton
           block="true"
-          size="lg"
+          size="sm"
           type="submit"
           variant="success"
           isLoading={isLoading}
           disabled={!validateForm()}
         >
-          Signup
+          Rekisteröidy
         </LoaderButton>
       </Form>
     );
