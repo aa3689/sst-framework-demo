@@ -58,7 +58,7 @@ export default function Login() {
         </Form.Group>
         <LoaderButton
           block="true"
-          size="lg"
+          size="sm"
           type="submit"
           isLoading={isLoading}
           disabled={!validateForm()}
