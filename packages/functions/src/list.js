@@ -1,16 +1,20 @@
+// list.js vastaa tietyn käyttäjän kaikkien kurssien hakemisesta
+
 import { Table } from 'sst/node/table';
 import handler from '@sst-framework-demo/core/handler';
 import dynamoDb from '@sst-framework-demo/core/dynamodb';
 
+/*
+Haetaan kurssi TableName-muuttujan mukaisesta DynamoDB-taulusta.
+Kurssin hakemiseen käytetään avaimena käyttäjän userId:tä.
+Odotetaan, että kurssit on haettu DynamoDB:stä ja palautetaan ne.
+*/
 export const main = handler(async (event) => {
   const params = {
     TableName: Table.Courses.tableName,
-    // 'KeyConditionExpression' defines the condition for the query
-    // - 'userId = :userId': only return items with matching 'userId'
-    //   partition key
+    // 'KeyConditionExpression' on DynamoDB:n tapa hakea tietoja avaimen perusteella
     KeyConditionExpression: 'userId = :userId',
-    // 'ExpressionAttributeValues' defines the value in the condition
-    // - ':userId': defines 'userId' to be the id of the author
+    // 'ExpressionAttributeValues' on DynamoDB:n tapa "korvata" :userId muuttujan arvolla
     ExpressionAttributeValues: {
       ':userId': event.requestContext.authorizer.iam.cognitoIdentity.identityId,
     },
@@ -18,6 +22,5 @@ export const main = handler(async (event) => {
 
   const result = await dynamoDb.query(params);
 
-  // Return the matching list of items in response body
   return result.Items;
 });

@@ -1,8 +1,10 @@
+// FrontendStack.js vastaa React-sivuston pystyttämisestä
+
 import { StaticSite, use } from 'sst/constructs';
 import { ApiStack } from './ApiStack';
 import { AuthStack } from './AuthStack';
-import { StorageStack } from './StorageStack';
 
+// Exportataan FrontendStack, jota käytetään AppStackissa
 export function FrontendStack({ stack, app }) {
   const { api } = use(ApiStack);
   const { auth } = use(AuthStack);

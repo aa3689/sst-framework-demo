@@ -23,6 +23,7 @@ export default function Course() {
     async function onLoad() {
       try {
         const course = await loadCourse();
+        // console.log('loadCourse', course);
         const { courseScope, courseGrade } = course;
 
         setCourseScope(courseScope);
@@ -41,7 +42,7 @@ export default function Course() {
   }
 
   function saveCourse(course) {
-    console.log('course', course);
+    // console.log('saveCourse', course);
     return API.put('courses', `/courses/${courseName}`, {
       body: course,
     });

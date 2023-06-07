@@ -1,22 +1,21 @@
-import * as iam from 'aws-cdk-lib/aws-iam';
+// AuthStack.js vastaa Cogniton pystyttämisestä
+
 import { Cognito, use } from 'sst/constructs';
-import { StorageStack } from './StorageStack';
 import { ApiStack } from './ApiStack';
 
+// Exportataan AuthStack, jota käytetään FrontendStackissa ja sst.config.ts:ssä
 export function AuthStack({ stack, app }) {
   const { api } = use(ApiStack);
 
-  // Create a Cognito User Pool and Identity Pool
+  // Luodaan Cognito User Pool ja Identity Pool
   const auth = new Cognito(stack, 'Auth', {
     login: ['email'],
   });
 
-  auth.attachPermissionsForAuthUsers(stack, [
-    // Allow access to the API
-    api,
-  ]);
+  // Liitetään API:n käyttöoikeudet autentikoituneille käyttäjille
+  auth.attachPermissionsForAuthUsers(stack, [api]);
 
-  // Show the auth resources in the output
+  // Tulostetaan Cogniton palauttamat tiedot
   stack.addOutputs({
     Region: app.region,
     UserPoolId: auth.userPoolId,
@@ -24,7 +23,6 @@ export function AuthStack({ stack, app }) {
     UserPoolClientId: auth.userPoolClientId,
   });
 
-  // Return the auth resource
   return {
     auth,
   };

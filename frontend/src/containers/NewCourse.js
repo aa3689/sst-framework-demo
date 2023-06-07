@@ -32,7 +32,7 @@ export default function NewCourse() {
   }
 
   function createCourse(course) {
-    console.log('course', course);
+    // console.log('createCourse', course);
     return API.post('courses', '/courses', {
       body: course,
     });
