@@ -1,5 +1,7 @@
 // ApiStack.js vastaa API Gatewayn pystyttämisestä
 
+// Konstruktiot ('sst/constructs') ovat sst:n "valmiita komponentteja",
+// joiden avulla voidaan pystyttää AWS-resursseja
 import { Api, use } from 'sst/constructs';
 import { StorageStack } from './StorageStack';
 

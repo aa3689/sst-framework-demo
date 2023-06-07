@@ -1,5 +1,7 @@
 // AuthStack.js vastaa Cogniton pystyttämisestä
 
+// Konstruktiot ('sst/constructs') ovat sst:n "valmiita komponentteja",
+// joiden avulla voidaan pystyttää AWS-resursseja
 import { Cognito, use } from 'sst/constructs';
 import { ApiStack } from './ApiStack';
 

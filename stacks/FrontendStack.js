@@ -1,15 +1,17 @@
 // FrontendStack.js vastaa React-sivuston pystyttämisestä
 
+// Konstruktiot ('sst/constructs') ovat sst:n "valmiita komponentteja",
+// joiden avulla voidaan pystyttää AWS-resursseja
 import { StaticSite, use } from 'sst/constructs';
 import { ApiStack } from './ApiStack';
 import { AuthStack } from './AuthStack';
 
-// Exportataan FrontendStack, jota käytetään AppStackissa
+// Exportataan FrontendStack, jota käytetään sst.config.ts:ssä
 export function FrontendStack({ stack, app }) {
   const { api } = use(ApiStack);
   const { auth } = use(AuthStack);
 
-  // Define our React app
+  // Luodaan
   const site = new StaticSite(stack, 'ReactSite', {
     path: 'frontend',
     buildOutput: 'build',

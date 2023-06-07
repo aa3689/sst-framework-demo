@@ -1,3 +1,6 @@
+// sst.config.ts on root-tason konfiguraatiotiedosto, joka vastaa koko sovelluksen hallinnasta.
+// Sen voidaan ajatella vastaavan ikään kuin serverless.yml-tiedostoa.
+
 import { SSTConfig } from 'sst';
 // @ts-ignore
 import { StorageStack } from './stacks/StorageStack';
