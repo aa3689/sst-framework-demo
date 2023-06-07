@@ -74,6 +74,7 @@ export default function Home() {
       <div className="courses">
         <h2 className="pb-3 mt-4 mb-3 border-bottom">Suoritetut kurssit</h2>
         <ListGroup>{!isLoading && renderCoursesList(courses)}</ListGroup>
+        <span className="text-muted">Valitse kurssi muokatakseksi sitä</span>
       </div>
     );
   }

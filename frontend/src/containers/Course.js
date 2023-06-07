@@ -64,10 +64,21 @@ export default function Course() {
     }
   }
 
+  function deleteCourse() {
+    return API.del('courses', `/courses/${courseName}`);
+  }
+
   async function handleDelete(event) {
     event.preventDefault();
-
     setIsDeleting(true);
+
+    try {
+      await deleteCourse();
+      nav('/');
+    } catch (e) {
+      onError(e);
+      setIsDeleting(false);
+    }
   }
 
   return (
@@ -96,21 +107,22 @@ export default function Course() {
           </Form.Group>
           <LoaderButton
             block="true"
-            size="lg"
+            size="sm"
             type="submit"
             isLoading={isLoading}
             disabled={!validateForm()}
           >
-            Save
+            Tallenna
           </LoaderButton>
+
           <LoaderButton
             block="true"
-            size="lg"
+            size="sm"
             variant="danger"
             onClick={handleDelete}
             isLoading={isDeleting}
           >
-            Delete
+            Poista
           </LoaderButton>
         </Form>
       )}
