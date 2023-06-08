@@ -19,7 +19,7 @@ Sovelluksessa käyttäjä voi rekisteröitymisen ja sisäänkirjautumisen jälke
 
 Sovelluksen arkkitehtuuri:
 
-<img src="./img/tree.png">
+<img src="./img/architecture.png">
 
 #### Pystyttäminen (ei vielä testattu, että toimii näin)
 *HUOM! Sovelluksen pystyttäminen vaatii AWS-tilin riittävillä IAM-käyttöoikeuksilla (ks. ohjeet: https://sst.dev/chapters/create-an-iam-user.html).*
