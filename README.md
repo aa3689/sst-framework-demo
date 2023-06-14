@@ -8,14 +8,14 @@ Projekti toimi Backend 2 -kurssin lopputyönä. Työssä oli tarkoituksena tutus
 
 Sovelluksessa käyttäjä voi rekisteröitymisen ja sisäänkirjautumisen jälkeen lisätä suorittamiansa kursseja sekä muokata tai poistaa niitä.
 
-**Sovelluksen päärakenne on seuraava:**
+**Sovelluksen päärakenne:**
 
 <img src="./img/tree.png">
 
 - frontend-kansio sisältää React-sovelluksen
 - packages-kansio sisältää kaksi kansiota:
-	- core -> ns. aputiedostoja
-	- functions -> lambda-funktiot
+  - core -> ns. aputiedostoja
+  - functions -> lambda-funktiot
 - stacks-kansio sisältää infran pystyttämiseen käytetyt tiedostot, joista ns. tulee CloudFormation-stackeja
 - sst.config.ts-tiedosto hallinnoi koko sovellusta
 
@@ -28,12 +28,13 @@ Sovelluksessa käyttäjä voi rekisteröitymisen ja sisäänkirjautumisen jälke
 3. Lambda-funktio välittää pyynnön DynamoDB:lle ja palauttaa vastauksen frontend-sovellukselle
 
 #### Pystyttäminen (ei vielä testattu, että toimii näin)
-*HUOM! Sovelluksen pystyttäminen vaatii AWS-tilin riittävillä IAM-käyttöoikeuksilla (ks. ohjeet: https://sst.dev/chapters/create-an-iam-user.html).*
 
-> Suorita `npm install` -komento sekä projektin juuressa että frontend-kansiossa.
+_HUOM! Sovelluksen pystyttäminen vaatii AWS-tilin riittävillä IAM-käyttöoikeuksilla (ks. ohjeet: https://sst.dev/chapters/create-an-iam-user.html)._
 
-> Suorita `npm start` -komento frontend-kansiossa.
+> Tiedostossa `sst.config.ts` voit asettaa haluamasi nimen projektille sekä käytettävän regioonan
+
+> Suorita `npm install` -komento sekä projektin juuressa että frontend-kansiossa
 
 > Suorita `npx sst dev` -komento projektin juuressa (pystyttää sovelluksen pilveen)
 
-> `sst.config.ts` -tiedostossa voit asettaa haluamasi nimen projektille sekä käytettävän regioonan
+> Suorita `npm start` -komento frontend-kansiossa (käynnistää React-clientin)
