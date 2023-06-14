@@ -27,7 +27,7 @@ Sovelluksessa käyttäjä voi rekisteröitymisen ja sisäänkirjautumisen jälke
 2. Frontend-sovelluksesta lähtevät pyynnöt välitetään API Gatewayn kautta pyyntöön täsmäävälle Lambda-funktiolle
 3. Lambda-funktio välittää pyynnön DynamoDB:lle ja palauttaa vastauksen frontend-sovellukselle
 
-#### Pystyttäminen (ei vielä testattu, että toimii näin)
+#### Pystyttäminen
 
 _HUOM! Sovelluksen pystyttäminen vaatii AWS-tilin riittävillä IAM-käyttöoikeuksilla (ks. ohjeet: https://sst.dev/chapters/create-an-iam-user.html)._
 
